@@ -25,6 +25,8 @@
 	var array =[row0,row1,row2,row3,row4,row5,row6,row7,row8,row9,row10
 				,row11,row12,row13,row14,row15,row16,row17,row18,row19,row20];
 
+	//var piece = new Array();
+
 
 	for(j=0;j<el+2;j++){
 		for(k=0;k<el+2;k++){
@@ -35,6 +37,7 @@
 	function stone(i,str){
 		if(i%2==1){
 			array[str.substr(0,1)-0][str.substr(2,1)-0]=1;
+			//piece[i-1]=array[str.substr(0,1)-0][str.substr(2,1)-0];
 			//alert("["+((str.substr(0,1)-0)+(str.substr(2,1)-0))+"]="+array[str.substr(0,1)][str.substr(2,1)]);
 			return '<img src="ex07.png">';
 		}else{
@@ -43,7 +46,7 @@
 		}
 	}
 
-	function end(i){
+	function end(i){ //勝利判定した際の動作
 		if(i%2==0){
 			alert("黒の勝ち！");
 		}else{
@@ -83,7 +86,7 @@
 			end(i);
 			return;
 		}
-		//斜め判定１
+		//斜め判定１"/"
 		for(n=1;n<5;n++){
 			if(array[j][k]!=array[j+n][k+n]){
 				for(m=0;m<5;m++){
@@ -98,7 +101,7 @@
 			end(i);
 			return;
 		}
-		//斜め判定２
+		//斜め判定２"\"
 		for(n=1;n<5;n++){
 			if(array[j][k]!=array[j-n][k+n]){
 				for(m=0;m<5;m++){
@@ -116,7 +119,7 @@
 		return;
 	}
 	
-	function rewrite(str){
+	function rewrite(str){ //クリックした場所に石を置く
 		if(document.getElementById(str).innerHTML=='<img src="ex06.png">'){
 			document.getElementById(str).innerHTML=stone(i,str);
 			i++;
@@ -127,7 +130,7 @@
 		}
 	}
 
-	function reset(){
+	function reset(){ //石のリセット
 		var j,k;
 		i=1;
 		document.getElementById("tesuu").textContent="＜"+i+"手目＞";
@@ -141,6 +144,6 @@
 		}
 	}
 
-	function undo(){
+	function undo(){ //1手前に戻す
 
 	}
